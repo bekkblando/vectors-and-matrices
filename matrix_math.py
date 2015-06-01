@@ -35,7 +35,7 @@ def shape(matrix_1):
     return (len(matrix_1), )
 
 
-def vector_add(vector_1, vector_2):
+def vector_add(vector_1, vector_2):  # Works
     check_shape(vector_1, vector_2)
     answer = []
     for num, value in enumerate(vector_1):
@@ -51,7 +51,7 @@ def vector_sub(vector_1, vector_2):  # Works
     return answer
 
 
-def vector_sum(*args):
+def vector_sum(*args):  # Works
     args = list(args)
     # check_shape(args[0], args[1])
     init_list = [0 for x in range(len(args[0]))]
@@ -70,19 +70,19 @@ def vector_multiply(vector_1, z):  # Works
     return answer
 
 
-def vector_mean(*args):
+def vector_mean(*args):  # Works
     answer = []
-    list_to_work = vector_sum(args)
-    for num, item in list_to_work:
-        answer.append(list_to_work[num]/2)
+    list_to_work = vector_sum(*args)
+    for item in list_to_work:
+        answer.append(item/2)
     return answer
 
 
-def matrix_row(matrix_1, row_num):
+def matrix_row(matrix_1, row_num):  # Works
     return matrix_1[row_num]
 
 
-def matrix_col(matrix_1, col_num):
+def matrix_col(matrix_1, col_num):  # Not Done
     answer = []
     for num in matrix_1:
         for number in value:
@@ -90,16 +90,27 @@ def matrix_col(matrix_1, col_num):
     return answer
 
 
-def matrix_scalar_multiply(vector_1, z):
+def matrix_scalar_multiply(vector_1, z):  # Works
+    final_answer = []
+    init_list = [0 for x in range(len(vector_1[0]))]
     answer = []
-    answer_2 = []
-    for num in vector_1:
-        for number, value in enumerate(num):
-            num[number] = value * num
-    return vector_1
+    counter = 0
+    for lists in vector_1:
+        print(vector_1)
+        if counter == 1:
+            init_list = [0 for x in range(len(vector_1[0]))]
+        final_answer.append(init_list)
+
+        print(lists)
+        counter = 1
+        for num, item in enumerate(lists):
+            print(item)
+            init_list[num] = (item * z)
+            print(init_list)
+    return(final_answer)
 
 
-def matrix_vector_multiply():
+def matrix_vector_multiply():  # Not Done
     answer = []
     for num in vector_1:
         for number in num:
@@ -109,11 +120,6 @@ def matrix_vector_multiply():
         print(answer_2)
     return answer_2
 
-C = [[1, 2],
-     [2, 1],
-     [1, 2]]
-print(matrix_scalar_multiply(C, 3))
 
-
-def matrix_matrix_multiply():
+def matrix_matrix_multiply():  # Not Done
     pass

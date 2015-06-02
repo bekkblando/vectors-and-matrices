@@ -54,6 +54,9 @@ def vector_sub(vector_1, vector_2):  # Works
 def vector_sum(*args):  # Works
     args = list(args)
     # check_shape(args[0], args[1])
+    for e, i in enumerate(args):
+        if len(args[0]) != len(args[e]):
+            raise ShapeException
     init_list = [0 for x in range(len(args[0]))]
     math_work = 0
     for item in args:
@@ -73,8 +76,11 @@ def vector_multiply(vector_1, z):  # Works
 def vector_mean(*args):  # Works
     answer = []
     list_to_work = vector_sum(*args)
+    args = list(args)
+    divide_by = len(args)
     for item in list_to_work:
-        answer.append(item/2)
+        answer.append(item/divide_by)
+    print(answer)
     return answer
 
 
@@ -82,12 +88,17 @@ def matrix_row(matrix_1, row_num):  # Works
     return matrix_1[row_num]
 
 
-def matrix_col(matrix_1, col_num):  # Not Done
+def matrix_col(matrix_1, col_num):  # Works
     answer = []
-    for num in matrix_1:
-        for number in value:
-            answer.append(value[col_num])
-    return answer
+    init_list = [0 for x in range(len(matrix_1))]
+    for n, num in enumerate(matrix_1):
+        # print("Run")
+        # print(init_list)
+        for number, value in enumerate(num):
+            # print(num[col_num])
+            init_list[n] = num[col_num]
+            # print(init_list)
+    return init_list
 
 
 def matrix_scalar_multiply(vector_1, z):  # Works
@@ -121,5 +132,31 @@ def matrix_vector_multiply():  # Not Done
     return answer_2
 
 
-def matrix_matrix_multiply():  # Not Done
-    pass
+def matrix_matrix_multiply(matrix_1, matrix_2):
+    if matrix_col(matrix_1, 0) != matrix_row(matrix_2, 0):
+        raise ShapeException
+    """answer = []
+    if matrix_col(matrix_1, 0) <= matrix_col(matrix_2, 0):
+        run_matrix = matrix_2
+        other_matrix = matrix_1
+    else:
+        run_matrix = matrix_1
+        other_matrix = matrix_2
+    for x,y in enumerate(run_matrix):
+        answer.append(
+            dot(matrix_col(run_matrix, x), matrix_row(other_matrix, x)))
+    return answer"""
+    if matrix_col(matrix_1, 0) <= matrix_col(matrix_2, 0):
+        run_matrix = matrix_2
+        other_matrix = matrix_1
+    else:
+        run_matrix = matrix_1
+        other_matrix = matrix_2
+    init_list = [[0 for row in range(
+        len(other_matrix))] for col in range(len(run_matrix[0]))]
+    print(init_list)
+    for row in range(len(matrix_1)):
+        for col in range(len(matrix_2[0])):
+            for rows in range(len(matrix_2)):
+                init_list[row][col] += matrix_1[row][rows] * matrix_2[rows][col]
+    return(init_list)

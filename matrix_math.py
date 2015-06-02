@@ -121,15 +121,20 @@ def matrix_scalar_multiply(vector_1, z):  # Works
     return(final_answer)
 
 
-def matrix_vector_multiply():  # Not Done
-    answer = []
-    for num in vector_1:
-        for number in num:
-            number = number * num
-            answer.append(number)
-        answer_2.append(answer)
-        print(answer_2)
-    return answer_2
+def matrix_vector_multiply(matrix_1, vector_1):  # Not Done
+    if len(matrix_1[0]) != len(vector_1):
+        raise ShapeException
+    init_list = [0 for x in range(len(matrix_1))]
+    print(init_list)
+    for vector in matrix_1:
+        for nums, number in enumerate(vector):
+            print(nums)
+            print(vector[nums], vector_1[nums])
+            init_list[nums] += sum(matrix_col(matrix_1, nums)) * vector_1[nums]
+            sum(init_list)
+
+    print(init_list)
+    return init_list
 
 
 def matrix_matrix_multiply(matrix_1, matrix_2):

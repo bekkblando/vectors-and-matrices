@@ -53,7 +53,6 @@ def vector_sub(vector_1, vector_2):  # Works
 
 def vector_sum(*args):  # Works
     args = list(args)
-    # check_shape(args[0], args[1])
     for e, i in enumerate(args):
         if len(args[0]) != len(args[e]):
             raise ShapeException
@@ -92,12 +91,8 @@ def matrix_col(matrix_1, col_num):  # Works
     answer = []
     init_list = [0 for x in range(len(matrix_1))]
     for n, num in enumerate(matrix_1):
-        # print("Run")
-        # print(init_list)
         for number, value in enumerate(num):
-            # print(num[col_num])
             init_list[n] = num[col_num]
-            # print(init_list)
     return init_list
 
 
@@ -140,17 +135,6 @@ def matrix_vector_multiply(matrix_1, vector_1):  # Not Done
 def matrix_matrix_multiply(matrix_1, matrix_2):
     if matrix_col(matrix_1, 0) != matrix_row(matrix_2, 0):
         raise ShapeException
-    """answer = []
-    if matrix_col(matrix_1, 0) <= matrix_col(matrix_2, 0):
-        run_matrix = matrix_2
-        other_matrix = matrix_1
-    else:
-        run_matrix = matrix_1
-        other_matrix = matrix_2
-    for x,y in enumerate(run_matrix):
-        answer.append(
-            dot(matrix_col(run_matrix, x), matrix_row(other_matrix, x)))
-    return answer"""
     if matrix_col(matrix_1, 0) <= matrix_col(matrix_2, 0):
         run_matrix = matrix_2
         other_matrix = matrix_1

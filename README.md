@@ -1,3 +1,4 @@
+Learned quite a bit of vector and matrix math in addition to making more complex structures.
 # Vector and Matrix Math
 
 ## Description
